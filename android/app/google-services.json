@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "60139359415",
+    "project_id": "desi-mart-9d046",
+    "storage_bucket": "desi-mart-9d046.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:60139359415:android:73d9780c5a011aae3f5132",
+        "android_client_info": {
+          "package_name": "com.example.desi_mart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGzJg-L4HHys6A50MrSnGJe9jl1evsgjA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
