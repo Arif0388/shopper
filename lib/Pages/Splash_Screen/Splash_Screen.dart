@@ -1,10 +1,11 @@
-import 'package:desi_mart/ApiService/ApiService.dart';
+
 import 'package:desi_mart/Config/AssetsPath.dart';
-import 'package:desi_mart/Config/Page_Routes.dart';
-import 'package:desi_mart/Pages/WelcomePage/WelcomePage.dart';
+import 'package:desi_mart/Controller/authController.dart';
+import 'package:desi_mart/Pages/HomePage/HomePage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
+
+import '../WelcomePage/WelcomePage.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
 late AnimationController controller;
 late Animation<double> animation;
-
+AuthController authController  = Get.put(AuthController());
   @override
   void initState()
   {
@@ -29,27 +30,18 @@ late Animation<double> animation;
 
   Future<void> SplashController()async{
     await Future.delayed(const Duration(seconds:3)).then((value){
-    //
-    // if(ApiService.auth.currentUser !=null)
-    //   {
-    //      context.go('/homePage');
-    //   }
-    // else
-    //   {
-    //     context.go('/signupPage');
-    //   }
-    // context.go('/loginPage');
+     if(authController.auth.currentUser!=null)
+       {
+         Get.offAll(HomePage());
+       }else{
+       Get.offAll(WelcomePage());
+     }
 
-      context.go('/productDetailPage');
-      // context.go('/categoryPage');
 
     });
   }
 
-  @override
-  void dispose()
-  {
-    controller.dispose();
+  void dispose(){
     super.dispose();
   }
 
@@ -64,7 +56,7 @@ late Animation<double> animation;
             child:ScaleTransition(
               alignment:Alignment.center,
                 scale:animation,
-              child:SvgPicture.asset(IconsPath.appLogo),
+              child:Image.asset(ImagesPath.appLogo,width:200,),
             ),
           ),
           SizedBox(height:300),
