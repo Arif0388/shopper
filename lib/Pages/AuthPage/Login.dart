@@ -90,14 +90,18 @@ class Login extends StatelessWidget {
                                   borderRadius:BorderRadius.circular(15)
                               ),
                               hintText:'Password',
-                              suffixIcon:Icon(Icons.password,color:Colors.white,),
+                              suffixIcon:Icon(Icons.remove_red_eye,color:Colors.white,),
                             ),
                           ),
+                        ),
+                        Container(
+                          alignment:Alignment.centerRight,
+                          child:Text('Forget Password?',style:Theme.of(context).textTheme.labelLarge),
                         ),
                         Obx(() =>
                             Container(
                               padding:const EdgeInsets.all(5),
-                              margin:const EdgeInsets.symmetric(vertical:65),
+                              margin:const EdgeInsets.symmetric(vertical:50),
                               width:310,
                               height:50,
                               decoration:BoxDecoration(
