@@ -15,5 +15,5 @@ class IconsPath
 
 class ImagesPath
 {
-  static const String potato = 'assets/Images/Potato.svg';
+  static const String appLogo = 'assets/Images/shop.png';
 }
