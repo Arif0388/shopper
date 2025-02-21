@@ -1,23 +1,17 @@
-import 'package:desi_mart/ApiService/ApiService.dart';
+
 import 'package:desi_mart/Config/AssetsPath.dart';
-import 'package:desi_mart/Config/Page_Routes.dart';
+import 'package:desi_mart/Controller/authController.dart';
+import 'package:desi_mart/Pages/AuthPage/Login.dart';
+import 'package:desi_mart/Pages/HomePage/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
-class SignUp extends StatefulWidget {
+import 'package:get/get.dart';
+class SignUp extends StatelessWidget {
     const SignUp({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState();
-}
-
-class _SignUpState extends State<SignUp> {
-   TextEditingController email = TextEditingController();
-   TextEditingController password = TextEditingController();
-      bool  isLoading =false;
-
-  @override
   Widget build(BuildContext context) {
+    AuthController authController = Get.put(AuthController());
     return SafeArea(
       child: Scaffold(
         backgroundColor:Theme.of(context).colorScheme.primary,
@@ -28,10 +22,6 @@ class _SignUpState extends State<SignUp> {
               children: [
                 SizedBox(height:70,),
                 Center(child: Text("Sign up",style:Theme.of(context).textTheme.headlineLarge)),
-                SizedBox(height:15),
-                Center(child: Text("""To Get more advantages signup you account by filling 
-                 
-                                 some information""",style:Theme.of(context).textTheme.bodySmall)),
                 SizedBox(height:70,),
                 Container(
                   padding:EdgeInsets.only(top:15),
@@ -62,6 +52,7 @@ class _SignUpState extends State<SignUp> {
                             color:Colors.orange,
                           ),
                           child:TextFormField(
+                            controller:authController.name,
                             style:Theme.of(context).textTheme.bodySmall,
                             cursorColor:Colors.black87,
                             decoration:InputDecoration(
@@ -92,7 +83,7 @@ class _SignUpState extends State<SignUp> {
                             color:Colors.orange,
                           ),
                           child:TextField(
-                            controller:email,
+                            controller:authController.email,
                             style:Theme.of(context).textTheme.bodySmall,
                             cursorColor:Colors.black87,
                             decoration:InputDecoration(
@@ -124,7 +115,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                           child:TextField(
                             obscureText:true,
-                            controller:password,
+                            controller:authController.password,
                             style:Theme.of(context).textTheme.bodySmall,
                             cursorColor:Colors.black87,
                             decoration:InputDecoration(
@@ -136,27 +127,32 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ),
                         ),
-                        Container(
-                          padding:const EdgeInsets.all(5),
-                          margin:const EdgeInsets.symmetric(vertical:65),
-                          width:310,
-                          height:50,
-                          decoration:BoxDecoration(
-                            borderRadius:BorderRadius.circular(15),
-                            color:Theme.of(context).colorScheme.primary,
-                          ),
-                          child:Center(child: InkWell(
-                            onTap:(){
-                              ApiService.signUp(email.text.toString(),password.text.toString());
-                              print('Email :$email');
-                              print('Password :$password');
-                                    context.go('/homePage');
-                            },
-                              child:  isLoading ? CircularProgressIndicator(color:Colors.yellow,) : Text('Sign up ',style:Theme.of(context).textTheme.bodyMedium?.copyWith(color:Theme.of(context).colorScheme.onSurface)))),
+                        Obx(() =>
+                            Container(
+                              padding:const EdgeInsets.all(5),
+                              margin:const EdgeInsets.symmetric(vertical:65),
+                              width:310,
+                              height:50,
+                              decoration:BoxDecoration(
+                                borderRadius:BorderRadius.circular(15),
+                                color:Theme.of(context).colorScheme.primary,
+                              ),
+                              child:Center(child: InkWell(
+                                  onTap:(){
+                                    authController.signup();
+                                  },
+                                  child: authController.isLoading.value? Center(child: CircularProgressIndicator(color:Colors.white,)) : Text('Sign up ',style:Theme.of(context).textTheme.bodyMedium?.copyWith(color:Theme.of(context).colorScheme.onSurface)))),
+                            ),
                         ),
                         Row(children: [
-                          Expanded(child: Text("""       Don't have account ?""",style:Theme.of(context).textTheme.labelMedium)),
-                          Expanded(child: Text("""  Create account""",style:Theme.of(context).textTheme.labelMedium?.copyWith(color:Theme.of(context).colorScheme.primary))),
+                          Expanded(
+                              flex:4,
+                              child: Text("""       already have an account ?""",style:Theme.of(context).textTheme.labelMedium)),
+                          Expanded(flex:2,child: InkWell(
+                              onTap:(){
+                                Get.to(Login(),transition:Transition.fadeIn);
+                              },
+                              child: Text("""  Login""",style:Theme.of(context).textTheme.labelMedium?.copyWith(color:Theme.of(context).colorScheme.primary)))),
                         ],)
                       ],
                     ),
