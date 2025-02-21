@@ -1,20 +1,14 @@
-import 'package:desi_mart/ApiService/ApiService.dart';
-import 'package:desi_mart/Config/AssetsPath.dart';
+
+import 'package:desi_mart/Controller/authController.dart';
+import 'package:desi_mart/Pages/AuthPage/Signup.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
-class Login extends StatefulWidget {
+import 'package:get/get.dart';
+class Login extends StatelessWidget {
   const Login({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
-}
-
-class _LoginState extends State<Login> {
-  final TextEditingController email = TextEditingController();
-  final TextEditingController password = TextEditingController();
-  @override
   Widget build(BuildContext context) {
+    AuthController authController = Get.put(AuthController());
     return SafeArea(
       child: Scaffold(
         backgroundColor:Theme.of(context).colorScheme.primary,
@@ -25,10 +19,6 @@ class _LoginState extends State<Login> {
               children: [
                 SizedBox(height:70,),
                 Center(child: Text("Login",style:Theme.of(context).textTheme.headlineLarge)),
-                SizedBox(height:15),
-                Center(child: Text("""To Get more advantages signup you account by filling 
-                 
-                                 some information""",style:Theme.of(context).textTheme.bodySmall)),
                 SizedBox(height:70,),
                 Container(
                   padding:EdgeInsets.only(top:10),
@@ -60,7 +50,7 @@ class _LoginState extends State<Login> {
                             color:Colors.orange,
                           ),
                           child:TextFormField(
-                            controller:email,
+                            controller:authController.email,
                             style:Theme.of(context).textTheme.bodySmall,
                             cursorColor:Colors.black87,
                             decoration:InputDecoration(
@@ -92,7 +82,7 @@ class _LoginState extends State<Login> {
                           ),
                           child:TextFormField(
                             obscureText:true,
-                           controller:password,
+                           controller:authController.password,
                             style:Theme.of(context).textTheme.bodySmall,
                             cursorColor:Colors.black87,
                             decoration:InputDecoration(
@@ -104,26 +94,30 @@ class _LoginState extends State<Login> {
                             ),
                           ),
                         ),
-                        Container(
-                          padding:const EdgeInsets.all(5),
-                          margin:const EdgeInsets.symmetric(vertical:65),
-                          width:310,
-                          height:50,
-                          decoration:BoxDecoration(
-                            borderRadius:BorderRadius.circular(15),
-                            color:Theme.of(context).colorScheme.primary,
-                          ),
-                          child:InkWell(
-                              onTap:(){
-
-                                    ApiService.signIn(email.text.toString(), password.text.toString());
-                                    context.go('/homePage');
-                              },
-                              child: Center(child: Text('Login ',style:Theme.of(context).textTheme.bodyMedium?.copyWith(color:Theme.of(context).colorScheme.onSurface)))),
+                        Obx(() =>
+                            Container(
+                              padding:const EdgeInsets.all(5),
+                              margin:const EdgeInsets.symmetric(vertical:65),
+                              width:310,
+                              height:50,
+                              decoration:BoxDecoration(
+                                borderRadius:BorderRadius.circular(15),
+                                color:Theme.of(context).colorScheme.primary,
+                              ),
+                              child:InkWell(
+                                  onTap:(){
+                                    authController.login();
+                                  },
+                                  child:authController.isLoading.value? Center(child: CircularProgressIndicator(color:Colors.white,)) : Center(child: Text('Login ',style:Theme.of(context).textTheme.bodyMedium?.copyWith(color:Theme.of(context).colorScheme.onSurface)))),
+                            ),
                         ),
                         Row(children: [
-                          Expanded(child: Text("""       Don't have account ?""",style:Theme.of(context).textTheme.labelMedium)),
-                          Expanded(child: Text("""  Create account""",style:Theme.of(context).textTheme.labelMedium?.copyWith(color:Theme.of(context).colorScheme.primary))),
+                          Expanded(flex:2,  child: Text("""       Don't have account ?""",style:Theme.of(context).textTheme.labelMedium)),
+                          Expanded(flex:2,  child: InkWell(
+                              onTap:(){
+                                Get.to(SignUp(),transition:Transition.fadeIn);
+                              },
+                              child: Text("""  Create account""",style:Theme.of(context).textTheme.labelMedium?.copyWith(color:Theme.of(context).colorScheme.primary)))),
                         ],)
                       ],
                     ),
