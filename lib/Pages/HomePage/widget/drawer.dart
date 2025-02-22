@@ -1,5 +1,7 @@
 import 'package:desi_mart/Controller/authController.dart';
+import 'package:desi_mart/Controller/google_sign_in_controller.dart';
 import 'package:desi_mart/Pages/AuthPage/Signup.dart';
+import 'package:desi_mart/Pages/WelcomePage/WelcomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,7 +10,7 @@ class drawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AuthController authController = Get.put(AuthController());
+    GoogleSignInController googleSignInController = Get.put(GoogleSignInController());
     return SingleChildScrollView(
       scrollDirection:Axis.vertical,
       child: Column(
@@ -18,20 +20,22 @@ class drawer extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius:40,
-                  child:Text('A',style:Theme.of(context).textTheme.labelLarge),
+                  child:ClipRRect(
+                      borderRadius:BorderRadius.circular(50),
+                      child: Image.network(fit:BoxFit.cover,googleSignInController.auth.currentUser!.photoURL.toString())),
                 ),
                 const SizedBox(width:25),
                 Column(
                   children: [
                     const SizedBox(height:30),
-                    Text('.......',style:Theme.of(context).textTheme.headlineSmall),
+                    Text(googleSignInController.auth.currentUser!.displayName!,style:Theme.of(context).textTheme.headlineSmall),
                     const SizedBox(height:10),
                     OutlinedButton(
                         onPressed:(){
-                        }, child: authController.auth.currentUser!=null?  InkWell(
+                        }, child: googleSignInController.auth.currentUser!=null?  InkWell(
                         onTap:(){
-                          authController.logout();
-                          Get.offAll(SignUp());
+                         googleSignInController.signOut();
+                          Get.offAll(WelcomePage());
                         },
                         child: Text('Logout',style:Theme.of(context).textTheme.bodyMedium)) : Text('login',style:Theme.of(context).textTheme.bodyMedium)),
                   ],
