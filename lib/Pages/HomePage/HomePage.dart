@@ -19,10 +19,6 @@ class HomePage extends StatelessWidget {
         backgroundColor:Theme.of(context).colorScheme.primary,
         title:Text('HomePage'),
         centerTitle:true,
-        actions: [
-          IconButton(onPressed: (){
-          }, icon:Icon(Icons.add)),
-        ],
       ),
     );
   }
