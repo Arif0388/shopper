@@ -27,8 +27,8 @@ class SignUp extends StatelessWidget {
                   SizedBox(height:70,),
                   Container(
                     padding:EdgeInsets.only(top:15),
-                    width:350,
-                    height:520,
+                    // width:350,
+                    // height:520,
                     // width:Get.width,
                     decoration:BoxDecoration(
                       borderRadius:BorderRadius.circular(16),
@@ -134,10 +134,70 @@ class SignUp extends StatelessWidget {
                               ),
                             ),
                           ),
+                          // for phone number
+                          Row(
+                            children: [
+                              SizedBox(height:10,),
+                              Text('   Phone',style:Theme.of(context).textTheme.labelMedium),
+                            ],
+                          ),
+                          Container(
+                            width:310,
+                            height:49,
+                            margin:EdgeInsets.symmetric(vertical:10),
+                            decoration:BoxDecoration(
+                              borderRadius:BorderRadius.circular(15),
+                              color:Colors.orange,
+                            ),
+                            child:TextField(
+                              keyboardType:TextInputType.phone,
+                              obscureText:true,
+                              controller:authController.password,
+                              style:Theme.of(context).textTheme.bodySmall,
+                              cursorColor:Colors.black87,
+                              decoration:InputDecoration(
+                                border:OutlineInputBorder(
+                                    borderRadius:BorderRadius.circular(15)
+                                ),
+                                hintText:'Phone',
+                                suffixIcon:Icon(Icons.call,color:Colors.white,),
+                              ),
+                            ),
+                          ),
+                          // for city
+                          Row(
+                            children: [
+                              SizedBox(height:10,),
+                              Text('   City',style:Theme.of(context).textTheme.labelMedium),
+                            ],
+                          ),
+                          Container(
+                            width:310,
+                            height:49,
+                            margin:EdgeInsets.symmetric(vertical:10),
+                            decoration:BoxDecoration(
+                              borderRadius:BorderRadius.circular(15),
+                              color:Colors.orange,
+                            ),
+                            child:TextField(
+                              keyboardType:TextInputType.text,
+                              obscureText:true,
+                              controller:authController.password,
+                              style:Theme.of(context).textTheme.bodySmall,
+                              cursorColor:Colors.black87,
+                              decoration:InputDecoration(
+                                border:OutlineInputBorder(
+                                    borderRadius:BorderRadius.circular(15)
+                                ),
+                                hintText:'City',
+                                suffixIcon:Icon(Icons.location_on_outlined,color:Colors.white,),
+                              ),
+                            ),
+                          ),
                           Obx(() =>
                               Container(
                                 padding:const EdgeInsets.all(5),
-                                margin:const EdgeInsets.symmetric(vertical:65),
+                                margin:const EdgeInsets.symmetric(vertical:30),
                                 width:310,
                                 height:50,
                                 decoration:BoxDecoration(
