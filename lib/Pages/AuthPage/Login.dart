@@ -90,11 +90,12 @@ class Login extends StatelessWidget {
                                   borderRadius:BorderRadius.circular(15)
                               ),
                               hintText:'Password',
-                              suffixIcon:Icon(Icons.remove_red_eye,color:Colors.white,),
+                              suffixIcon:Icon(Icons.visibility_off_sharp,color:Colors.white,),
                             ),
                           ),
                         ),
                         Container(
+                          margin:EdgeInsets.symmetric(vertical:5),
                           alignment:Alignment.centerRight,
                           child:Text('Forget Password?',style:Theme.of(context).textTheme.labelLarge),
                         ),
@@ -116,12 +117,12 @@ class Login extends StatelessWidget {
                             ),
                         ),
                         Row(children: [
-                          Expanded(flex:2,  child: Text("""       Don't have account ?""",style:Theme.of(context).textTheme.labelMedium)),
+                          Expanded(flex:3,  child: Text("""       Don't have an account ?""",style:Theme.of(context).textTheme.labelMedium)),
                           Expanded(flex:2,  child: InkWell(
                               onTap:(){
                                 Get.to(SignUp(),transition:Transition.fadeIn);
                               },
-                              child: Text("""  Create account""",style:Theme.of(context).textTheme.labelMedium?.copyWith(color:Theme.of(context).colorScheme.primary)))),
+                              child: Text("""  Create an account""",style:Theme.of(context).textTheme.labelMedium?.copyWith(color:Theme.of(context).colorScheme.primary)))),
                         ],)
                       ],
                     ),
