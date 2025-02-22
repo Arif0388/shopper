@@ -1,9 +1,12 @@
 
 import 'package:desi_mart/Config/Theme.dart';
+import 'package:desi_mart/Pages/AuthPage/Login.dart';
+import 'package:desi_mart/Pages/AuthPage/Signup.dart';
 import 'package:desi_mart/Pages/Splash_Screen/Splash_Screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'firebase_options.dart';
@@ -32,7 +35,7 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       themeMode:ThemeMode.light,
       home:SplashScreen(),
-      // home:SplashScreen(),
+      builder:EasyLoading.init(),
     );
   }
 }
