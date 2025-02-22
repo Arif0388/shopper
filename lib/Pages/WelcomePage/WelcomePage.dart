@@ -1,6 +1,9 @@
 import 'package:desi_mart/Config/AssetsPath.dart';
+import 'package:desi_mart/Controller/google_sign_in_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -8,6 +11,7 @@ class WelcomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GoogleSignInController googleSignInController = Get.put(GoogleSignInController());
     return Scaffold(
       backgroundColor:Theme.of(context).colorScheme.primary,
       body: Column(
@@ -90,7 +94,9 @@ class WelcomePage extends StatelessWidget {
             height:50,
             child: SignInButton(
                 elevation:5,
-                Buttons.google, onPressed:(){}
+                Buttons.google, onPressed:(){
+                  googleSignInController.signInWithGoogle();
+            }
             ),
           ),
           SizedBox(height:20),
