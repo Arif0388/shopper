@@ -1,6 +1,12 @@
 
-import 'package:desi_mart/Controller/authController.dart';
+import 'package:desi_mart/Controller/get_user_data_controller.dart';
+import 'package:desi_mart/Controller/sign_up_controller.dart';
+import 'package:desi_mart/Controller/sign_in_controller.dart';
+import 'package:desi_mart/Pages/AdminPage/adminPage.dart';
 import 'package:desi_mart/Pages/AuthPage/Signup.dart';
+import 'package:desi_mart/Pages/ForgetPasswordPage/Forget_Password_Page.dart';
+import 'package:desi_mart/Pages/HomePage/HomePage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 class Login extends StatelessWidget {
@@ -8,7 +14,10 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AuthController authController = Get.put(AuthController());
+    SignInController signInController  = Get.put(SignInController());
+    TextEditingController email = TextEditingController();
+    TextEditingController password = TextEditingController();
+    GetUserDataController getUserDataController = Get.put(GetUserDataController());
     return SafeArea(
       child: Scaffold(
         backgroundColor:Theme.of(context).colorScheme.primary,
@@ -50,7 +59,7 @@ class Login extends StatelessWidget {
                             color:Colors.orange,
                           ),
                           child:TextFormField(
-                            controller:authController.email,
+                            controller:email,
                             style:Theme.of(context).textTheme.bodySmall,
                             cursorColor:Colors.black87,
                             decoration:InputDecoration(
@@ -80,26 +89,37 @@ class Login extends StatelessWidget {
                             borderRadius:BorderRadius.circular(15),
                             color:Colors.orange,
                           ),
-                          child:TextFormField(
-                            obscureText:true,
-                           controller:authController.password,
-                            style:Theme.of(context).textTheme.bodySmall,
-                            cursorColor:Colors.black87,
-                            decoration:InputDecoration(
-                              border:OutlineInputBorder(
-                                  borderRadius:BorderRadius.circular(15)
+                          child:Obx(() =>
+                              TextFormField(
+                                obscureText:signInController.isPasswordVisible.value,
+                                controller:password,
+                                style:Theme.of(context).textTheme.bodySmall,
+                                cursorColor:Colors.black87,
+                                decoration:InputDecoration(
+                                  border:OutlineInputBorder(
+                                      borderRadius:BorderRadius.circular(15)
+                                  ),
+                                  hintText:'Password',
+                                  suffixIcon:InkWell(
+                                      onTap:(){
+                                        signInController.isPasswordVisible.toggle();
+                                      },
+                                      child: signInController.isPasswordVisible.value? Icon(Icons.visibility_off_sharp,color:Colors.white,) : Icon(Icons.remove_red_eye,color:Colors.white,)
+                                  ),
+                                ),
                               ),
-                              hintText:'Password',
-                              suffixIcon:Icon(Icons.visibility_off_sharp,color:Colors.white,),
-                            ),
+                          )
+                        ),
+                        InkWell(
+                          onTap:(){
+                            Get.to(ForgetPasswordPage());
+                          },
+                          child: Container(
+                            margin:EdgeInsets.symmetric(vertical:5),
+                            alignment:Alignment.centerRight,
+                            child:Text('Forget Password?',style:Theme.of(context).textTheme.labelLarge),
                           ),
                         ),
-                        Container(
-                          margin:EdgeInsets.symmetric(vertical:5),
-                          alignment:Alignment.centerRight,
-                          child:Text('Forget Password?',style:Theme.of(context).textTheme.labelLarge),
-                        ),
-                        Obx(() =>
                             Container(
                               padding:const EdgeInsets.all(5),
                               margin:const EdgeInsets.symmetric(vertical:50),
@@ -110,12 +130,58 @@ class Login extends StatelessWidget {
                                 color:Theme.of(context).colorScheme.primary,
                               ),
                               child:InkWell(
-                                  onTap:(){
-                                    authController.login();
+                                  onTap:() async {
+                                  String userEmail = email.text;
+                                  String userPassword = password.text;
+                                  if(userEmail.isEmpty|| userPassword.isEmpty)
+                                    {
+                                      Get.snackbar("Error",'Please fill all required field',
+                                          snackPosition:SnackPosition.BOTTOM,
+                                          backgroundColor:Colors.red,
+                                          colorText:Colors.white
+                                      );
+                                    }else{
+                                       UserCredential? userCredential = await signInController.SignInMethod(userEmail, userPassword);
+                                       var userData = await getUserDataController.getUserData(userCredential!.user!.uid);
+
+                                       if(userCredential!=null)
+                                         {
+                                           if(userCredential.user!.emailVerified)
+                                             {
+                                               if(userData[0]['isAdmin'] ==true){
+                                                 Get.snackbar("Success login to Admin",'Login successfully to Admin',
+                                                     snackPosition:SnackPosition.BOTTOM,
+                                                     backgroundColor:Colors.teal,
+                                                     colorText:Colors.white
+                                                 );
+                                                 Get.offAll(AdminPage());
+                                               }else{
+                                                 Get.offAll(HomePage());
+                                                 Get.snackbar("Success login to User",'Login successfully to User',
+                                                     snackPosition:SnackPosition.BOTTOM,
+                                                     backgroundColor:Colors.teal,
+                                                     colorText:Colors.white
+                                                 );
+                                               }
+
+                                             }else{
+                                             Get.snackbar("Error",'Please verify your email before login',
+                                                 snackPosition:SnackPosition.BOTTOM,
+                                                 backgroundColor:Colors.red,
+                                                 colorText:Colors.white
+                                             );
+                                           }
+                                         }else  {
+                                         Get.snackbar("Error",'Please try again',
+                                             snackPosition:SnackPosition.BOTTOM,
+                                             backgroundColor:Colors.red,
+                                             colorText:Colors.white
+                                         );
+                                       }
+                                  }
                                   },
-                                  child:authController.isLoading.value? Center(child: CircularProgressIndicator(color:Colors.white,)) : Center(child: Text('Login ',style:Theme.of(context).textTheme.bodyMedium?.copyWith(color:Theme.of(context).colorScheme.onSurface)))),
+                                  child:Center(child: Text('Login ',style:Theme.of(context).textTheme.bodyMedium?.copyWith(color:Theme.of(context).colorScheme.onSurface)))),
                             ),
-                        ),
                         Row(children: [
                           Expanded(flex:3,  child: Text("""       Don't have an account ?""",style:Theme.of(context).textTheme.labelMedium)),
                           Expanded(flex:2,  child: InkWell(
