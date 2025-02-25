@@ -1,18 +1,27 @@
 
 import 'package:desi_mart/Config/AssetsPath.dart';
-import 'package:desi_mart/Controller/authController.dart';
+import 'package:desi_mart/Controller/sign_up_controller.dart';
 import 'package:desi_mart/Pages/AuthPage/Login.dart';
 import 'package:desi_mart/Pages/HomePage/HomePage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import '../../Controller/get_device_token_controller.dart';
 class SignUp extends StatelessWidget {
     const SignUp({super.key});
 
   @override
   Widget build(BuildContext context) {
     AuthController authController = Get.put(AuthController());
+    GetDeviceTokenController getDeviceTokenController = Get.put(GetDeviceTokenController());
+    TextEditingController name = TextEditingController();
+    TextEditingController email = TextEditingController();
+    TextEditingController password = TextEditingController();
+    TextEditingController phone = TextEditingController();
+    TextEditingController city = TextEditingController();
     return KeyboardVisibilityBuilder(builder:(context, isKeyboardVisible) {
       return SafeArea(
         child: Scaffold(
@@ -57,7 +66,7 @@ class SignUp extends StatelessWidget {
                             ),
                             child:TextFormField(
                               keyboardType:TextInputType.name,
-                              controller:authController.name,
+                              controller:name,
                               style:Theme.of(context).textTheme.bodySmall,
                               cursorColor:Colors.black87,
                               decoration:InputDecoration(
@@ -89,7 +98,7 @@ class SignUp extends StatelessWidget {
                             ),
                             child:TextField(
                               keyboardType:TextInputType.emailAddress,
-                              controller:authController.email,
+                              controller:email,
                               style:Theme.of(context).textTheme.bodySmall,
                               cursorColor:Colors.black87,
                               decoration:InputDecoration(
@@ -119,20 +128,27 @@ class SignUp extends StatelessWidget {
                               borderRadius:BorderRadius.circular(15),
                               color:Colors.orange,
                             ),
-                            child:TextField(
-                              keyboardType:TextInputType.visiblePassword,
-                              obscureText:true,
-                              controller:authController.password,
-                              style:Theme.of(context).textTheme.bodySmall,
-                              cursorColor:Colors.black87,
-                              decoration:InputDecoration(
-                                border:OutlineInputBorder(
-                                    borderRadius:BorderRadius.circular(15)
+                            child:Obx(() =>
+                                TextField(
+                                  keyboardType:TextInputType.visiblePassword,
+                                  obscureText:authController.isPasswordVisible.value,
+                                  controller:password,
+                                  style:Theme.of(context).textTheme.bodySmall,
+                                  cursorColor:Colors.black87,
+                                  decoration:InputDecoration(
+                                    border:OutlineInputBorder(
+                                        borderRadius:BorderRadius.circular(15)
+                                    ),
+                                    hintText:'Password',
+                                    suffixIcon:InkWell(
+                                        onTap:(){
+                                          authController.isPasswordVisible.toggle();
+                                        },
+                                        child: authController.isPasswordVisible.value?Icon(Icons.visibility_off_sharp,color:Colors.white) : Icon(Icons.remove_red_eye,color:Colors.white)
+                                    ),
+                                  ),
                                 ),
-                                hintText:'Password',
-                                suffixIcon:Icon(Icons.remove_red_eye,color:Colors.white,),
-                              ),
-                            ),
+                            )
                           ),
                           // for phone number
                           Row(
@@ -152,7 +168,7 @@ class SignUp extends StatelessWidget {
                             child:TextField(
                               keyboardType:TextInputType.phone,
                               obscureText:true,
-                              controller:authController.password,
+                              controller:phone,
                               style:Theme.of(context).textTheme.bodySmall,
                               cursorColor:Colors.black87,
                               decoration:InputDecoration(
@@ -182,7 +198,7 @@ class SignUp extends StatelessWidget {
                             child:TextField(
                               keyboardType:TextInputType.text,
                               obscureText:true,
-                              controller:authController.password,
+                              controller:city,
                               style:Theme.of(context).textTheme.bodySmall,
                               cursorColor:Colors.black87,
                               decoration:InputDecoration(
@@ -194,7 +210,6 @@ class SignUp extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Obx(() =>
                               Container(
                                 padding:const EdgeInsets.all(5),
                                 margin:const EdgeInsets.symmetric(vertical:30),
@@ -205,12 +220,29 @@ class SignUp extends StatelessWidget {
                                   color:Theme.of(context).colorScheme.primary,
                                 ),
                                 child:Center(child: InkWell(
-                                    onTap:(){
-                                      authController.signup();
+                                    onTap:() async {
+                                     if(name.text.isEmpty || email.text.isEmpty || password.text.isEmpty || phone.text.isEmpty || city.text.isEmpty){
+                                       Get.snackbar("Error",'Please fill all required field',
+                                           snackPosition:SnackPosition.BOTTOM,
+                                           backgroundColor:Colors.red,
+                                           colorText:Colors.white
+                                       );
+                                     }else  {
+                                    UserCredential? userCredential  = await authController.SignUpMethod(name.text.trim(),email.text.trim(),phone.text.trim(),city.text.trim(),password.text.trim(),getDeviceTokenController.deviceToken!);
+                                    if(userCredential !=null)
+                                      {
+                                        Get.snackbar("Verification email sent",'Please check your email',
+                                            snackPosition:SnackPosition.BOTTOM,
+                                            backgroundColor:Colors.red,
+                                            colorText:Colors.white
+                                        );
+                                        Get.offAll(Login());
+                                      }
+                                     }
+
                                     },
-                                    child: authController.isLoading.value? Center(child: CircularProgressIndicator(color:Colors.white,)) : Text('Sign up ',style:Theme.of(context).textTheme.bodyMedium?.copyWith(color:Theme.of(context).colorScheme.onSurface)))),
+                                    child:Text('Sign up ',style:Theme.of(context).textTheme.bodyMedium?.copyWith(color:Theme.of(context).colorScheme.onSurface)))),
                               ),
-                          ),
                           Row(children: [
                             Expanded(
                                 flex:4,
