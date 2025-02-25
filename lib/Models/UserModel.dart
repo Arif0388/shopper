@@ -11,7 +11,9 @@ class UserModel {
       this.userAddress, 
       this.isAdmin, 
       this.isActive, 
-      this.createdOn,});
+      this.createdOn,
+      this.city
+  });
 
   UserModel.fromJson(dynamic json) {
     uid = json['Uid'];
@@ -25,6 +27,7 @@ class UserModel {
     userAddress = json['userAddress'];
     isAdmin = json['isAdmin'];
     isActive = json['isActive'];
+    city = json['city'];
     createdOn = json['createdOn'].toString();
   }
   String? uid;
@@ -39,6 +42,7 @@ class UserModel {
   bool? isAdmin;
   bool? isActive;
   dynamic createdOn;
+  String? city;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -54,6 +58,7 @@ class UserModel {
     map['isAdmin'] = isAdmin;
     map['isActive'] = isActive;
     map['createdOn'] = createdOn;
+    map['city'] = city;
     return map;
   }
 
