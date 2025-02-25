@@ -1,5 +1,6 @@
 import 'package:desi_mart/Config/AssetsPath.dart';
 import 'package:desi_mart/Controller/google_sign_in_controller.dart';
+import 'package:desi_mart/Pages/AuthPage/Login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -49,7 +50,7 @@ class WelcomePage extends StatelessWidget {
                   Row(children: [
                     const SizedBox(width:10,),
                     SvgPicture.asset(IconsPath.foods),
-                    Text('   Whole foods and vegitable',
+                    Text('   Whole foods and vegetable',
                         style:Theme.of(context).textTheme.bodyMedium?.copyWith(color:Theme.of(context).colorScheme.onPrimaryContainer)),
                   ],
                   ),
@@ -105,7 +106,9 @@ class WelcomePage extends StatelessWidget {
             height:50,
             child: SignInButton(
                 elevation:5,
-                Buttons.email, onPressed:(){}
+                Buttons.email, onPressed:(){
+                  Get.to(Login());
+            }
             ),
           ),
         ],
