@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:desi_mart/Controller/get_device_token_controller.dart';
 import 'package:desi_mart/Models/UserModel.dart';
 import 'package:desi_mart/Pages/HomePage/HomePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,6 +15,7 @@ class GoogleSignInController extends GetxController
  final GoogleSignIn googleSignIn = GoogleSignIn();
 
  Future<void> signInWithGoogle()async{
+  GetDeviceTokenController getDeviceTokenController = Get.put(GetDeviceTokenController());
  try{
   final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
   if(googleSignInAccount !=null)
@@ -37,13 +39,14 @@ class GoogleSignInController extends GetxController
         userEmail:user.email,
         userPhone:user.phoneNumber.toString(),
         userImage:user.photoURL.toString(),
-        userDeviceToken:'',
-        userCountry: '',
+        userDeviceToken:getDeviceTokenController.deviceToken!,
+        userCountry:'',
         userAddress:'',
         userStreet:'',
         isAdmin:false,
         isActive:true,
         createdOn:DateTime.now(),
+        city:'',
        );
       await _db.collection('Users').doc(user.uid).set(userModel.toJson());
       EasyLoading.dismiss();
@@ -56,7 +59,8 @@ class GoogleSignInController extends GetxController
     }
  }
 
- Future<void> signOut()async{
+ Future<void> SignOut()async{
  await googleSignIn.signOut();
  }
+
 }
