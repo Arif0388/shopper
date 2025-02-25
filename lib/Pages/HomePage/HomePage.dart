@@ -1,17 +1,20 @@
-import 'package:desi_mart/Controller/authController.dart';
+import 'package:desi_mart/Controller/get_user_data_controller.dart';
+import 'package:desi_mart/Controller/sign_up_controller.dart';
 import 'package:desi_mart/Pages/HomePage/widget/drawer.dart';
+import 'package:desi_mart/Pages/WelcomePage/WelcomePage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    AuthController authController = Get.put(AuthController());
+    GetUserDataController getUserDataController = Get.put(GetUserDataController());
     return Scaffold(
       drawer:Drawer(
-        shadowColor:Colors.grey,
         backgroundColor:Theme.of(context).colorScheme.primary,
         child:drawer(),
       ),
