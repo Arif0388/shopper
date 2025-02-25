@@ -3,6 +3,7 @@ import 'package:desi_mart/Config/Theme.dart';
 import 'package:desi_mart/Pages/AuthPage/Login.dart';
 import 'package:desi_mart/Pages/AuthPage/Signup.dart';
 import 'package:desi_mart/Pages/Splash_Screen/Splash_Screen.dart';
+import 'package:desi_mart/Pages/WelcomePage/WelcomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: lightTheme,
       themeMode:ThemeMode.light,
+      // home:WelcomePage(),
       home:SplashScreen(),
       builder:EasyLoading.init(),
     );
