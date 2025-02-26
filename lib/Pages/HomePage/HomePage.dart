@@ -1,6 +1,7 @@
 import 'package:desi_mart/Controller/get_user_data_controller.dart';
 import 'package:desi_mart/Controller/sign_up_controller.dart';
-import 'package:desi_mart/Pages/HomePage/widget/drawer.dart';
+import 'package:desi_mart/Pages/HomePage/widget/banner_widget.dart';
+import 'package:desi_mart/Pages/HomePage/widget/drawer_widget.dart';
 import 'package:desi_mart/Pages/WelcomePage/WelcomePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,12 @@ class HomePage extends StatelessWidget {
         backgroundColor:Theme.of(context).colorScheme.primary,
         title:Text('HomePage'),
         centerTitle:true,
+      ),
+      body:Column(
+        children: [
+          SizedBox(height:10),
+          BannerWidget(),
+      ],
       ),
     );
   }
