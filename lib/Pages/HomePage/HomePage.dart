@@ -2,6 +2,7 @@ import 'package:desi_mart/Controller/get_user_data_controller.dart';
 import 'package:desi_mart/Controller/sign_up_controller.dart';
 import 'package:desi_mart/Pages/HomePage/widget/banner_widget.dart';
 import 'package:desi_mart/Pages/HomePage/widget/drawer_widget.dart';
+import 'package:desi_mart/Pages/HomePage/widget/heading_widget.dart';
 import 'package:desi_mart/Pages/WelcomePage/WelcomePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     GetUserDataController getUserDataController = Get.put(GetUserDataController());
     return Scaffold(
+      backgroundColor:Theme.of(context).colorScheme.primaryContainer,
       drawer:Drawer(
         backgroundColor:Theme.of(context).colorScheme.primary,
         child:drawer(),
@@ -26,8 +28,9 @@ class HomePage extends StatelessWidget {
       ),
       body:Column(
         children: [
-          SizedBox(height:10),
+          SizedBox(height:5),
           BannerWidget(),
+          HeadingWidget(titleHeading: 'Categories', SubtitleHeading: 'According to your choice', onTap: () {  }, buttonText: 'See More>',),
       ],
       ),
     );
