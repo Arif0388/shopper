@@ -17,10 +17,10 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor:Color(0xff019934),
-    statusBarIconBrightness:Brightness.dark
-  ));
+  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  //   statusBarColor:Color(0xff019934),
+  //   statusBarIconBrightness:Brightness.dark
+  // ));
   runApp(const MyApp());
 }
 
