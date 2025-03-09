@@ -2,6 +2,7 @@
 import 'dart:async';
 
 import 'package:desi_mart/Config/AssetsPath.dart';
+import 'package:desi_mart/Config/Colors.dart';
 import 'package:desi_mart/Controller/get_user_data_controller.dart';
 import 'package:desi_mart/Pages/AdminPage/adminPage.dart';
 import 'package:desi_mart/Pages/HomePage/HomePage.dart';
@@ -58,7 +59,7 @@ GetUserDataController getUserDataController = Get.put(GetUserDataController());
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor:Theme.of(context).colorScheme.primary,
+      backgroundColor:ownColor2,
       body:Column(
         children: [
           SizedBox(height:250),
