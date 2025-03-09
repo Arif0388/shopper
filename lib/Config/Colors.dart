@@ -7,3 +7,5 @@ const lightPrimaryContainerColor = Color(0xffFFFFFF);
 // const lightOnPrimaryContainerColor = Color(0xff8E8E8E);
 const lightOnPrimaryContainerColor = Color(0xff108101D);
 const lightSecondaryColor = Color(0xffF6921E);
+const ownColor = Color(0xff839d83);
+const ownColor2 = Color(0xff76a5af);
