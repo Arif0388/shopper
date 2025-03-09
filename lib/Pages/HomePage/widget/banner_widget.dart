@@ -27,7 +27,7 @@ class BannerWidget extends StatelessWidget {
             options:CarouselOptions(
               scrollDirection:Axis.horizontal,
               autoPlay:true,
-              aspectRatio:1.8,
+              aspectRatio:2,
               viewportFraction:10,
               animateToClosest:true
             ),
