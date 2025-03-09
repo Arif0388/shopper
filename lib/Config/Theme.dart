@@ -63,7 +63,7 @@ textTheme:const TextTheme(
       fontFamily:'Poppins',
       fontSize:15,
       fontWeight:FontWeight.w500,
-      color:lightOnPrimaryContainerColor
+      color:Colors.white
   ),
   labelMedium:TextStyle(
       fontFamily:'Poppins',
