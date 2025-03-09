@@ -24,16 +24,14 @@ class HeadingWidget extends StatelessWidget {
                 Text(SubtitleHeading,style:Theme.of(context).textTheme.labelMedium),
               ],
             ),
-            Container(
-              padding:EdgeInsets.all(10),
-              decoration:BoxDecoration(
-                borderRadius:BorderRadius.circular(15),
-                color:Theme.of(context).colorScheme.primaryContainer,
-                border:Border.all(color:Theme.of(context).colorScheme.primary,
-                width:1.5
+            Card(
+              child: Container(
+                padding:EdgeInsets.all(10),
+                decoration:BoxDecoration(
+                  borderRadius:BorderRadius.circular(15),
                 ),
+                child:Text(buttonText,style:Theme.of(context).textTheme.labelMedium),
               ),
-              child:Text(buttonText,style:Theme.of(context).textTheme.labelMedium?.copyWith(color:Colors.redAccent)),
             ),
           ],
         ),
