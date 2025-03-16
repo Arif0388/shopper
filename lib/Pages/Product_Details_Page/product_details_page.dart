@@ -23,7 +23,7 @@ class ProductDetailsPage extends StatelessWidget {
     return Scaffold(
       appBar:AppBar(
         centerTitle:true,
-        title:Text('Product Details',style:Theme.of(context).textTheme.headlineSmall),
+        title:Text('Product Details!',style:Theme.of(context).textTheme.headlineSmall),
       ),
       body:Padding(
         padding: const EdgeInsets.all(10.0),
