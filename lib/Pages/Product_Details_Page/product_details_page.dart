@@ -141,7 +141,7 @@ final db = FirebaseFirestore.instance;
      );
 
      await documentReference.set(cartModel.toJson());
-     print('Product Added');
+     print('Product Addedd');
    }
 
 
