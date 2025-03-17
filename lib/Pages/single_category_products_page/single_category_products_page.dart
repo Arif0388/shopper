@@ -1,7 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:desi_mart/Config/Colors.dart';
-import 'package:desi_mart/Controller/banner_controller.dart';
 import 'package:desi_mart/Models/ProductsModel.dart';
 import 'package:desi_mart/Pages/Product_Details_Page/product_details_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:image_card/image_card.dart';
-
-import '../../Models/CategoryModel.dart';
 
 class SingleCategoryProductsPage extends StatelessWidget {
   const SingleCategoryProductsPage ({super.key, required this.categoryId,});
@@ -57,18 +53,7 @@ class SingleCategoryProductsPage extends StatelessWidget {
                 return Card(
                   child: InkWell(
                     onTap:(){
-                      Get.to(
-                          ProductDetailsPage(
-                              productName: allProducts.productName!,
-                              productImage: allProducts.productImages![0],
-                              productSalePrice:allProducts.salePrice!,
-                              productIsSale:allProducts.isSale!,
-                              productFullPrice:allProducts.fullPrice!,
-                              productDesc: allProducts.productDescription!,
-                              categoryName: allProducts.categoryName!,
-                            productId:allProducts.productId!,
-                            categoryId: allProducts.categoryId!,
-                          ));
+                      Get.to(ProductDetailsPage(productModel:allProducts));
                     },
                     child: Container(
                       margin:EdgeInsets.all(5),
