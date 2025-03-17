@@ -1,81 +1,79 @@
-import 'package:desi_mart/Config/Colors.dart';
+
 import 'package:flutter/material.dart';
 
-var lightTheme = ThemeData(
+import 'Colors.dart';
+
+var darkTheme = ThemeData(
+  brightness:Brightness.dark,
   useMaterial3:true,
-  brightness:Brightness.light,
-  scaffoldBackgroundColor:lightBgColor,
-  colorScheme:const ColorScheme.light(
-    surface:lightBgColor,
-    onSurface:lightFontColor,
-    primary:lightPrimaryColor,
-    primaryContainer:lightPrimaryContainerColor,
-    onPrimaryContainer:lightOnPrimaryContainerColor,
-    secondary:lightSecondaryColor
+  appBarTheme:const AppBarTheme(
+    backgroundColor:dContainerColor,
+  ),
+  inputDecorationTheme:InputDecorationTheme(
+    fillColor:dBackgroundColor,
+    filled:true,
+    border:UnderlineInputBorder(
+      borderSide:BorderSide.none,
+      borderRadius:BorderRadius.circular(10),
+    ),
+  ),
+  colorScheme:const ColorScheme.dark(
+    primary:dPrimaryColor,
+    onPrimary:dOnBackgroundColor,
+    surface:dBackgroundColor,
+    onSurface:dOnBackgroundColor,
+    primaryContainer:dContainerColor,
+    onPrimaryContainer:dOnContainerColor,
   ),
 
-
-//   Defining Text Theme
-textTheme:const TextTheme(
-
-  // Headline
-  headlineLarge:TextStyle(
-    fontFamily:'Poppins',
-    fontSize:32,
-    fontWeight:FontWeight.w500,
-    color:lightFontColor
+  textTheme:const TextTheme(
+    headlineLarge:TextStyle(
+        fontSize:32,
+        color:dPrimaryColor,
+        fontFamily:"Poppins",
+        fontWeight:FontWeight.w800
+    ),
+    headlineMedium:TextStyle(
+        fontSize:30,
+        color:dOnBackgroundColor,
+        fontFamily:"Poppins",
+        fontWeight:FontWeight.w600
+    ),
+    headlineSmall:TextStyle(
+        fontSize:20,
+        color:dOnBackgroundColor,
+        fontFamily:"Poppins",
+        fontWeight:FontWeight.w600
+    ),
+    labelLarge:TextStyle(
+        fontSize:15,
+        color:Colors.white,
+        fontFamily:"Poppins",
+        fontWeight:FontWeight.w400
+    ),
+    labelMedium:TextStyle(
+        fontSize:12,
+        color:dOnContainerColor,
+        fontFamily:"Poppins",
+        fontWeight:FontWeight.w400
+    ),
+    labelSmall:TextStyle(
+        fontSize:10,
+        color:dOnContainerColor,
+        fontFamily:"Poppins",
+        fontWeight:FontWeight.w300
+    ),
+    bodyLarge:TextStyle(
+        fontSize:15,
+        color:dOnBackgroundColor,
+        fontFamily:"Poppins",
+        fontWeight:FontWeight.w500
+    ),
+    bodyMedium:TextStyle(
+        fontSize:12,
+        color:dOnBackgroundColor,
+        fontFamily:"Poppins",
+        fontWeight:FontWeight.w400
+    ),
   ),
-  headlineMedium:TextStyle(
-      fontFamily:'Poppins',
-      fontSize:20,
-      fontWeight:FontWeight.w500,
-      color:lightFontColor
-  ),
-  headlineSmall:TextStyle(
-      fontFamily:'Poppins',
-      fontSize:18,
-      fontWeight:FontWeight.w600,
-      color:lightFontColor
-  ),
-
-  // Body
-  bodyLarge:TextStyle(
-      fontFamily:'Poppins',
-      fontSize:25,
-      fontWeight:FontWeight.w400,
-      color:lightFontColor
-  ),
-  bodyMedium:TextStyle(
-      fontFamily:'Poppins',
-      fontSize:15,
-      fontWeight:FontWeight.w500,
-      color:lightFontColor
-  ),
-  bodySmall:TextStyle(
-      fontFamily:'Poppins',
-      fontSize:13,
-      fontWeight:FontWeight.w400,
-      color:lightFontColor
-  ),
-
-  // Label
-  labelLarge:TextStyle(
-      fontFamily:'Poppins',
-      fontSize:15,
-      fontWeight:FontWeight.w500,
-      color:Colors.white
-  ),
-  labelMedium:TextStyle(
-      fontFamily:'Poppins',
-      fontSize:12,
-      fontWeight:FontWeight.w400,
-      color:lightOnPrimaryContainerColor
-  ),
-  labelSmall:TextStyle(
-      fontFamily:'Poppins',
-      fontSize:12,
-      fontWeight:FontWeight.w500,
-      color:lightOnPrimaryContainerColor
-  ),
-)
 );

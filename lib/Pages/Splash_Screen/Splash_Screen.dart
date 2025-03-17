@@ -59,7 +59,6 @@ GetUserDataController getUserDataController = Get.put(GetUserDataController());
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor:ownColor2,
       body:Column(
         children: [
           SizedBox(height:250),
