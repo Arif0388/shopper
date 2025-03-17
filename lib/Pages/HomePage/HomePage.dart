@@ -23,7 +23,12 @@ class HomePage extends StatelessWidget {
         child:drawer(),
       ),
       appBar:AppBar(
-        title:Text('HomePage'),
+        title:Text('Shopper',style:TextStyle(shadows:[
+          Shadow(
+            color:Colors.greenAccent,
+            blurRadius:20
+          ),
+        ]),),
         centerTitle:true,
         actions: [
           IconButton(onPressed:(){
