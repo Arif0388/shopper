@@ -50,19 +50,7 @@ class AllProductsWidget extends StatelessWidget {
               return Card(
                 child: InkWell(
                   onTap:(){
-                    Get.to(
-                        ProductDetailsPage(
-                            productName:productSale.productName!,
-                            productImage:productSale.productImages![0],
-                            productSalePrice:productSale.salePrice!,
-                            productIsSale:productSale.isSale!,
-                            productFullPrice:productSale.fullPrice!,
-                            productDesc: productSale.productDescription!,
-                            categoryName:productSale.categoryName!,
-                          productId:productSale.productId!,
-                          categoryId: productSale.categoryId!,
-                        )
-                    );
+                    Get.to(ProductDetailsPage(productModel:productSale));
                   },
                   child: Container(
                     margin: EdgeInsets.all(5),

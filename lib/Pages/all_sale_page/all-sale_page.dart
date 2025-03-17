@@ -5,10 +5,10 @@ import 'package:desi_mart/Pages/Product_Details_Page/product_details_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:image_card/image_card.dart';
 
 import '../../../Models/ProductsModel.dart';
+import '../CartPage/cart_page.dart';
 
 class AllSalePage extends StatelessWidget {
   const AllSalePage({super.key});
@@ -20,6 +20,11 @@ class AllSalePage extends StatelessWidget {
       appBar:AppBar(
         centerTitle:true,
         title:Text('All Sale'),
+        actions: [
+          IconButton(onPressed:(){
+            Get.to(CartPage());
+          }, icon:Icon(Icons.shopping_cart_rounded))
+        ],
       ),
       body:FutureBuilder(
         future: db.collection('products').where('isSale',isEqualTo:true).get(),
@@ -55,18 +60,7 @@ class AllSalePage extends StatelessWidget {
                 return Card(
                   child: InkWell(
                     onTap:(){
-                      Get.to(
-                          ProductDetailsPage(
-                              productName: productSale.productName!,
-                              productImage: productSale.productImages![0],
-                              productDesc: productSale.productDescription!,
-                              categoryName:productSale.categoryName!,
-                              productSalePrice:productSale.salePrice!,
-                              productIsSale:productSale.isSale!,
-                              productFullPrice:productSale.fullPrice!,
-                              productId:productSale.productId!,
-                            categoryId: productSale.categoryId!,
-                          ));
+                      Get.to(ProductDetailsPage(productModel:productSale));
                     },
                     child: Container(
                       decoration: BoxDecoration(
