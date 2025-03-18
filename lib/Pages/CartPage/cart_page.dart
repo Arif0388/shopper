@@ -21,8 +21,8 @@ class CartPage extends StatelessWidget {
         centerTitle:true,
       ),
       body:Container(
-        child: Obx(() => cartProductController.isLoading.value? Center(child: CupertinoActivityIndicator()) : FutureBuilder(
-          future:db.collection('cart').doc(user!.uid).collection('cartOrders').get(),
+        child:StreamBuilder(
+            stream:db.collection('cart').doc(user!.uid).collection('cartOrders').snapshots(),
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CupertinoActivityIndicator()); // Show loading indicator while waiting for data
@@ -41,8 +41,11 @@ class CartPage extends StatelessWidget {
                          productTotalPrice:allData['productTotalPrice'] ,
                          productImages:allData['productImages'] ,
                          productName: allData['productName'],
-                         productId:allData['productId']
+                         productId:allData['productId'],
+                         productQuantity:allData['productQuantity'],
+                         fullPrice:allData['fullPrice']
                      );
+                     cartProductController.fetchCartProductPrice();
                      return
                        Card(
                          elevation:5,
@@ -56,11 +59,33 @@ class CartPage extends StatelessWidget {
                              mainAxisAlignment:MainAxisAlignment.spaceEvenly,
                              children: [
                                Text('Rs : ${cartData.productTotalPrice}',style:Theme.of(context).textTheme.labelMedium),
-                               CircleAvatar(
-                                 child:Text('+'),
+                               InkWell(
+                                 onTap:()async{
+                                   if(cartData.productQuantity! > 0){
+                                    db.collection('cart').doc(user.uid).collection('cartOrders').doc(cartData.productId).update({
+                                       'productQuantity':cartData.productQuantity! + 1,
+                                       'productTotalPrice':(double.parse(cartData.fullPrice!) + (double.parse(cartData.fullPrice!)) * (cartData.productQuantity!))
+                                     });
+                                     print('Function Call');
+                                   }
+                                 },
+                                 child: CircleAvatar(
+                                   child:Text('+'),
+                                 ),
                                ),
-                               CircleAvatar(
-                                 child:Text('-'),
+                               InkWell(
+                                 onTap:()async{
+                                 if(cartData.productQuantity! > 1){
+                                 db.collection('cart').doc(user.uid).collection('cartOrders').doc(cartData.productId).update({
+                                     'productQuantity':cartData.productQuantity! - 1,
+                                     'productTotalPrice':(double.parse(cartData.fullPrice!) * (cartData.productQuantity! - 1))
+                                   });
+                                 print('Function Call');
+                                    }
+                                 },
+                                 child: CircleAvatar(
+                                   child:Text('-',style:TextStyle(fontSize:30)),
+                                 ),
                                ),
                                IconButton(onPressed:(){
                                  cartProductController.cartProductDelete(currentUserId:user.uid, productId:cartData.productId!);
@@ -73,14 +98,16 @@ class CartPage extends StatelessWidget {
                  );
             }
           },
-        ),)
+        ),
       ),
       bottomNavigationBar:Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
           mainAxisAlignment:MainAxisAlignment.spaceEvenly,
           children: [
-            Text('Total : 1200',style:Theme.of(context).textTheme.labelLarge),
+           Obx(() =>
+               Text('Total : ${cartProductController.totalPrice.value}',style:Theme.of(context).textTheme.labelLarge),
+           ),
             Container(
               width:100,
               height:50,
