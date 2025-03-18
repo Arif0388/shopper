@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:desi_mart/Controller/cart_product_controller.dart';
 import 'package:desi_mart/Pages/CartPage/cart_page.dart';
 import 'package:desi_mart/Pages/HomePage/widget/all_products_widget.dart';
 import 'package:desi_mart/Pages/HomePage/widget/banner_widget.dart';
@@ -18,6 +19,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FirebaseFirestore db = FirebaseFirestore.instance;
+    CartProductController cartProductController  = Get.put(CartProductController());
     return Scaffold(
       drawer:Drawer(
         child:drawer(),
