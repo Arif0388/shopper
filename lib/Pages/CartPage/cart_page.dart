@@ -2,6 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:desi_mart/Controller/cart_product_controller.dart';
 import 'package:desi_mart/Models/CartModel.dart';
+import 'package:desi_mart/Pages/Check_Out_Page/check_out_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -100,24 +101,35 @@ class CartPage extends StatelessWidget {
           },
         ),
       ),
-      bottomNavigationBar:Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment:MainAxisAlignment.spaceEvenly,
-          children: [
-           Obx(() =>
-               Text('Total : ${cartProductController.totalPrice.value}',style:Theme.of(context).textTheme.labelLarge),
-           ),
-            Container(
-              width:100,
-              height:50,
-              decoration:BoxDecoration(
-                borderRadius:BorderRadius.circular(15),
-                color:Theme.of(context).colorScheme.primaryContainer
+      bottomNavigationBar:Container(
+        decoration:BoxDecoration(
+          borderRadius:BorderRadius.only(topLeft:Radius.circular(10),topRight:Radius.circular(10)),
+          color:Theme.of(context).colorScheme.primaryContainer,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment:MainAxisAlignment.spaceAround,
+            children: [
+             Obx(() =>
+                 Text('Total : ${cartProductController.totalPrice.value}',style:Theme.of(context).textTheme.labelLarge),
+             ),
+              InkWell(
+                onTap:(){
+                  Get.to(CheckOutPage());
+                },
+                child: Container(
+                  width:100,
+                  height:40,
+                  decoration:BoxDecoration(
+                    borderRadius:BorderRadius.circular(15),
+                      color:Theme.of(context).colorScheme.onPrimaryContainer
+                  ),
+                  child:Center(child: Text('Checkout')),
+                ),
               ),
-              child:Center(child: Text('Checkout')),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
