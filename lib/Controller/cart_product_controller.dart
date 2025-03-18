@@ -42,7 +42,7 @@ Future<void> fetchCartProductPrice()async {
   double sum = 0.0;
   for(var Data in snapshot.docs){
     var allData = Data.data();
-    if(allData !=null && allData.containsKey('productTotalPrice')){
+    if(allData !=null){
        sum = sum + (allData['productTotalPrice'] as num ).toDouble();
     }
   }
