@@ -39,7 +39,8 @@ class OrderModel {
     this.customerId,
     this.customerName,
     this.customerPhone,
-    this.status
+    this.status,
+    this.customerDeviceToken
   });
 
   // Convert JSON to Product object
@@ -63,6 +64,7 @@ class OrderModel {
       customerName:  json['customerName'] ?? '',
       customerPhone:     json['customerPhone'] ?? '',
       status:        json['status'] ?? '',
+      customerDeviceToken:        json['customerDeviceToken'] ?? '',
       productImages: List<dynamic>.from(json['productImages'] ?? ''),
     );
   }
@@ -88,7 +90,8 @@ class OrderModel {
       'customerId':customerId,
       'customerName':customerName,
        'customerPhone':customerPhone,
-        'status':status
+        'status':status,
+      'customerDeviceToken':customerDeviceToken
   };
   }
 }
