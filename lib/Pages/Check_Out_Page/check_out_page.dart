@@ -7,6 +7,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../Controller/get_customerr_device_token.dart';
+import '../../services/place_order.dart';
+
 class CheckOutPage extends StatelessWidget {
   const CheckOutPage({super.key});
 
@@ -15,6 +18,10 @@ class CheckOutPage extends StatelessWidget {
     final db = FirebaseFirestore.instance;
     User? user = FirebaseAuth.instance.currentUser;
     CartProductController cartProductController = Get.put(CartProductController());
+    TextEditingController nameController  = TextEditingController();
+    TextEditingController phoneController  = TextEditingController();
+    TextEditingController cityController  = TextEditingController();
+    TextEditingController addressController  = TextEditingController();
     return Scaffold(
       appBar:AppBar(
         title:Text('CheckOutPage',style:Theme.of(context).textTheme.labelLarge),
@@ -87,7 +94,7 @@ class CheckOutPage extends StatelessWidget {
               ),
               InkWell(
                 onTap:(){
-                  showModalBottomSheet(context);
+                  showModalBottomSheet(context:context, name:nameController, phone:phoneController, address:addressController, city:cityController);
                 },
                 child: Container(
                   width:100,
@@ -105,81 +112,97 @@ class CheckOutPage extends StatelessWidget {
       ),
     );
   }
-}
-void showModalBottomSheet(BuildContext context){
-  Get.bottomSheet(
-    Container(
-      width:Get.width,
-      height:Get.height/2.2,
-      decoration:BoxDecoration(
-        borderRadius:BorderRadius.circular(15),
-        color:Theme.of(context).colorScheme.primaryContainer,
-      ),
-      child:SingleChildScrollView(
-        child:Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Container(
-                width:Get.width/1.2,
-                margin:EdgeInsets.symmetric(vertical:10),
-                child:TextFormField(
-
-                  textInputAction:TextInputAction.next,
-                  decoration:InputDecoration(
-                    labelText:'Name',
-                    labelStyle:Theme.of(context).textTheme.labelMedium,
-                      suffixIcon:Icon(Icons.person,color:Theme.of(context).colorScheme.onPrimaryContainer,)
+  void showModalBottomSheet({required BuildContext context,required TextEditingController name,
+    required TextEditingController phone,
+    required TextEditingController address,
+    required TextEditingController city}){
+    Get.bottomSheet(
+      Container(
+        width:Get.width,
+        height:Get.height/2.2,
+        decoration:BoxDecoration(
+          borderRadius:BorderRadius.circular(15),
+          color:Theme.of(context).colorScheme.primaryContainer,
+        ),
+        child:SingleChildScrollView(
+          child:Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Container(
+                  width:Get.width/1.2,
+                  margin:EdgeInsets.symmetric(vertical:10),
+                  child:TextFormField(
+                    controller:name,
+                    textInputAction:TextInputAction.next,
+                    decoration:InputDecoration(
+                        labelText:'Name',
+                        labelStyle:Theme.of(context).textTheme.labelMedium,
+                        suffixIcon:Icon(Icons.person,color:Theme.of(context).colorScheme.onPrimaryContainer,)
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                width:Get.width/1.2,
-                margin:EdgeInsets.symmetric(vertical:10),
-                child:TextFormField(
-                  keyboardType:TextInputType.phone,
-                  textInputAction:TextInputAction.next,
-                  decoration:InputDecoration(
-                    labelText:'Phone',
-                      labelStyle:Theme.of(context).textTheme.labelMedium,
-                      suffixIcon:Icon(Icons.phone,color:Theme.of(context).colorScheme.onPrimaryContainer)
+                Container(
+                  width:Get.width/1.2,
+                  margin:EdgeInsets.symmetric(vertical:10),
+                  child:TextFormField(
+                    controller:phone,
+                    keyboardType:TextInputType.phone,
+                    textInputAction:TextInputAction.next,
+                    decoration:InputDecoration(
+                        labelText:'Phone',
+                        labelStyle:Theme.of(context).textTheme.labelMedium,
+                        suffixIcon:Icon(Icons.phone,color:Theme.of(context).colorScheme.onPrimaryContainer)
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                width:Get.width/1.2,
-                margin:EdgeInsets.symmetric(vertical:10),
-                child:TextFormField(
-                  textInputAction:TextInputAction.next,
-                  decoration:InputDecoration(
-                    labelText:'Address',
-                      labelStyle:Theme.of(context).textTheme.labelMedium,
-                      suffixIcon:Icon(Icons.home,color:Theme.of(context).colorScheme.onPrimaryContainer)
+                Container(
+                  width:Get.width/1.2,
+                  margin:EdgeInsets.symmetric(vertical:10),
+                  child:TextFormField(
+                    controller:address,
+                    textInputAction:TextInputAction.next,
+                    decoration:InputDecoration(
+                        labelText:'Address',
+                        labelStyle:Theme.of(context).textTheme.labelMedium,
+                        suffixIcon:Icon(Icons.home,color:Theme.of(context).colorScheme.onPrimaryContainer)
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                width:Get.width/1.2,
-                margin:EdgeInsets.symmetric(vertical:10),
-                child:TextFormField(
-                  textInputAction:TextInputAction.next,
-                  decoration:InputDecoration(
-                    labelText:'City',
-                      labelStyle:Theme.of(context).textTheme.labelMedium,
-                    suffixIcon:Icon(Icons.location_city,color:Theme.of(context).colorScheme.onPrimaryContainer)
+                Container(
+                  width:Get.width/1.2,
+                  margin:EdgeInsets.symmetric(vertical:10),
+                  child:TextFormField(
+                    controller:city,
+                    textInputAction:TextInputAction.next,
+                    decoration:InputDecoration(
+                        labelText:'City',
+                        labelStyle:Theme.of(context).textTheme.labelMedium,
+                        suffixIcon:Icon(Icons.location_city,color:Theme.of(context).colorScheme.onPrimaryContainer)
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height:20),
-              ElevatedButton(
-                  onPressed: (){
-                    
-                  }, child:Text('Place Order')
-              )
-            ],
+                SizedBox(height:20),
+                ElevatedButton(
+                    onPressed: ()async{
+                      if(name.text !='' && phone.text !='' && city.text !='' && address.text !=''){
+                       var userName = name.text.trim();
+                       var userPhone = phone.text.trim();
+                       var userAddress = address.text.trim();
+                       var userCity = city.text.trim();
+                     String customerToken =  await getCustomerDeviceToken();
+                     placeOrder(customerDeviceToken:customerToken,context:context, customerName:userName, customerAddress:userAddress, customerCity:userCity, customerPhone: userPhone);
+                      }else{
+                        print('Please fill all required field');
+                      }
+                    }, child:Text('Place Order')
+                )
+              ],
+            ),
           ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
+
