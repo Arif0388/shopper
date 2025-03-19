@@ -66,7 +66,7 @@ Admin Dashboard: Admins can access an intuitive dashboard to manage products, vi
 
 - [@Arif Ansari](https://github.com/Arif0388)
 
-
+## App Logo
 ![Logo](https://media-hosting.imagekit.io//fc0b158f4faf4b9e/Screenshot%202025-03-19%20230927.png?Expires=1837014556&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=v-9K~dD6NBwzUBStXhOxjS8A0I70jH0KiPpqiLVky9BarsP0Xz-ZJ7OyDHEszZDWNLwi1U1jYhZaE1pTPoHI2f2QgTTRyaMwtNC03oiOHKxmils7UjaaQMMSGdHYcJd5Z~mZw~lvGtFE4r4Wdifleu-OWBL0kVAWuKfaaVD~mqWF3yTyJc-ZU~ZQCHT~2kwXHY9vU9GHkglu8mXZlGKgXa5gzW-hAIMHqaahmCK7qeyioFFBhpCqGyiF1-to19uCFxyoLFBv89kiBGsHC5o3RBGo6fssl8b6vBa9Fkehngs4NWLh7OhRPcj2byWg5Tqyv6baZfEvdHL1PRHdNNm8hQ__)
 
 
