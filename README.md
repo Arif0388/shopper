@@ -1,4 +1,4 @@
-# 🛒 Shopper app using firebase
+# 🛒 Shopper app using flutter & firebase
 Our E-commerce mobile application is built using Flutter and Firebase, providing a seamless and engaging shopping experience for users. This powerful combination allows for smooth cross-platform functionality, ensuring that users can enjoy a high-performance shopping app on both iOS and Android devices.
 
 🚀Key features include:
