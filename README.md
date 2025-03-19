@@ -61,16 +61,13 @@ Admin Dashboard: Admins can access an intuitive dashboard to manage products, vi
 <img src='https://media-hosting.imagekit.io//1f9cb901581845ab/Screenshot_20250318_114516.jpg?Expires=1837013757&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=PIZ4jGoqc6gAGnscPx3oqRR17TYz50LsBffOzjrKSziEuI4d9UcRDr3StYf8eeziXyCAOaVog--fJfvfXyBUTMQJO0WrCMgsn~M3VnHncUl~r3LzItLbXzw5GgKhzntVyMUhEgByg28yEeoCxGWZQJbpHSeSlKvdyMA8bDV6vyAUktahFbkKwfpPbc0qrYIeIbT-KYBYXTBHLrRXXwm5VUmvtRzZY7JCnrtMNebOdF8od2qDPBq-bw7EpK6a3Kxd-ZhbERZWiGZOz5G7NN5i~-4hlYCjDPbs2YWzcRjrA81rjkHQV6xkD8AVe6WCXGSdocN2wZffs7OZBp~fmM0i2A__' width=300>
 <br>
 
-## .General News Screen
 
-<img src='https://media-hosting.imagekit.io//caebb0feb14e42f6/Screenshot_20250315_115405.jpg?Expires=1836640647&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=lNPoact0pQxJdB5DDljoQ7EnMq8SezrbGQUFYOlWdktjjfIwF~4T3ke1mWX7Af9w9oMBvZyJiV6L~Jbr59IorX-DcL~cgK0KUeRXBWFK0KxgGHwIUX0ePW4Az9MIergHurMHJ9~VTUbJgln02WK5asgs4iAqQcf8G0LfCWQ3NjyQ6QBsu5PYcU4STOauZW3caKpGcSh1orKmUtVZBtSev78AWlrkDdHmOmg0gdyw7T9hwlbrqE5CuGi4rARMQIRPtIGiAePhDSU~k6kT-EXlW490l8aa9THCkBWXvfkXeyo1a9UvylK7YsIlxqBBALPPikTUqiMfCXA0AwA3PTYHTg__' width=300>
-<br>
 ## Authors
 
 - [@Arif Ansari](https://github.com/Arif0388)
 
 
-![Logo](https://media-hosting.imagekit.io//85261112c3394d3e/Screenshot%202025-03-15%20153050.png?Expires=1836641404&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=Ry9LsA1BYm8bVGFvOY4yT5UNFhw7Y0rjEqL40vQQ5DvEKoRssGJ6R6S1Sa25-bzvO175AfkDW6Yd4sOe6ISXYa-NdgvwuX4vTPxC0QQ7g-G28v-xA3-PhTAGeBxWlbYMYJQ300E4wK~OhDHldza-2TYrZVlWOZHHEqF29GILZWWKGe~lVYNblp~2dUrvcMlazm~KA28hwGLkdUQ3ooXqm9i1AXxPuYjGIQxlYb6NvClK99suWfsDDMJZcNccasWWaBT1uybf0U3roSJG1xmC3xzFlg4aum9cbeVo3VD0UZU7vvt9TTYGmu5lCqqrOsV5x3wzJbDBnlsRLQzMMdTWPQ__)
+![Logo](https://media-hosting.imagekit.io//fc0b158f4faf4b9e/Screenshot%202025-03-19%20230927.png?Expires=1837014556&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=v-9K~dD6NBwzUBStXhOxjS8A0I70jH0KiPpqiLVky9BarsP0Xz-ZJ7OyDHEszZDWNLwi1U1jYhZaE1pTPoHI2f2QgTTRyaMwtNC03oiOHKxmils7UjaaQMMSGdHYcJd5Z~mZw~lvGtFE4r4Wdifleu-OWBL0kVAWuKfaaVD~mqWF3yTyJc-ZU~ZQCHT~2kwXHY9vU9GHkglu8mXZlGKgXa5gzW-hAIMHqaahmCK7qeyioFFBhpCqGyiF1-to19uCFxyoLFBv89kiBGsHC5o3RBGo6fssl8b6vBa9Fkehngs4NWLh7OhRPcj2byWg5Tqyv6baZfEvdHL1PRHdNNm8hQ__)
 
 
 ## Run Locally
@@ -78,7 +75,7 @@ Admin Dashboard: Admins can access an intuitive dashboard to manage products, vi
 Clone the project
 
 ```bash
- git clone https://github.com/Arif0388/hello_news_app__in_flutter.git
+ git clone https://github.com/Arif0388/shopper.git
 ```
 
 Go to the project directory
@@ -90,16 +87,23 @@ Go to the project directory
 Install dependencies
 
 ```bash
-  1.cupertino_icons: ^1.0.8
-  2.get: ^4.7.2
-  3.http: ^1.3.0
-  4.carousel_slider: ^5.0.0
-  5.smooth_page_indicator: ^1.2.1
-  6.pretty_animated_buttons: ^0.0.2
-  7.cached_network_image: ^3.4.1
-  8.webview_flutter: ^4.10.0
+ 1-cupertino_icons: ^1.0.8
+ 2-flutter_svg: ^2.0.17
+ 3-provider: ^6.1.2
+ 4-firebase_auth: ^5.5.0
+ 5-firebase_core: ^3.10.0
+ 6-get: ^4.7.2
+ 7-google_sign_in: ^6.2.2
+ 8-cloud_firestore: ^5.6.4
+ 9-sign_in_button: ^3.2.0
+ 10-flutter_keyboard_visibility: ^6.0.0
+ 11-flutter_easyloading: ^3.0.5
+ 12-firebase_messaging: ^15.2.3
+ 13-carousel_slider: ^5.0.0
+ 14-cached_network_image: ^3.4.1
+ 15-image_card: ^0.0.4
 ```
 # Download
-<a href='https://github.com/Arif0388/hello_news_app__in_flutter/releases/download/1.0.1/news.app.apk'>
+<a href=''>
 <img src='https://media-hosting.imagekit.io//95a2d9a03b2a4b89/Screenshot%202025-03-15%20193455.png?Expires=1836656035&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=DmwYIGZU0t9d4K2TF-waYHpOxBze8qokwfSXCoTp82c-WjAPyWqtKxgfXjEDIMctbI0S16cAs9nfTw9pIYQEEYrhaHf9KPqSLsfwzEDTDI0TA1L5OSemhS8SSU2GXybnZCS2-J3Qo7xtXrT5fDKTQUEFtTZ7WMnKj1m-RmL2GljPcpll26kxDhA94Z8PsGSCXDLALrwADd~9ZxzJfhHW20otaviI~ryqG~Y82OZGjujaMF5XZztomNbsaCF7TnPgFS1ghqZN4a80vSgNiPiWt8DYWzTbqh2IVArKY~gWWbkqjk4jLnuZGQctxMhKTlxpuANTTstgkmU2ONL3UzCRsg__'width=200>
  <a/>
