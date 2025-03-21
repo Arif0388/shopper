@@ -2,11 +2,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:desi_mart/Controller/cart_product_controller.dart';
 import 'package:desi_mart/Models/CartModel.dart';
-import 'package:desi_mart/Pages/Check_Out_Page/check_out_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../Check_Out_Page/check_out_page.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});

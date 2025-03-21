@@ -6,9 +6,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../Controller/get_customerr_device_token.dart';
-import '../../services/place_order.dart';
+import '../../../Controller/get_customerr_device_token.dart';
+import '../../../services/place_order.dart';
+import '../HomePage/HomePage.dart';
 
 class CheckOutPage extends StatelessWidget {
   const CheckOutPage({super.key});
@@ -192,6 +192,7 @@ class CheckOutPage extends StatelessWidget {
                        var userCity = city.text.trim();
                      String customerToken =  await getCustomerDeviceToken();
                      placeOrder(customerDeviceToken:customerToken,context:context, customerName:userName, customerAddress:userAddress, customerCity:userCity, customerPhone: userPhone);
+                     Get.offAll(HomePage());
                       }else{
                         print('Please fill all required field');
                       }

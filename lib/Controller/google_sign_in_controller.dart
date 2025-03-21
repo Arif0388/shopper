@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:desi_mart/Controller/get_device_token_controller.dart';
 import 'package:desi_mart/Models/UserModel.dart';
-import 'package:desi_mart/Pages/HomePage/HomePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
+import '../User_Panel/Pages/HomePage/HomePage.dart';
 
 class GoogleSignInController extends GetxController
 {

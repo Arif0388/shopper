@@ -1,17 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:desi_mart/Controller/cart_product_controller.dart';
-import 'package:desi_mart/Pages/CartPage/cart_page.dart';
-import 'package:desi_mart/Pages/HomePage/widget/all_products_widget.dart';
-import 'package:desi_mart/Pages/HomePage/widget/banner_widget.dart';
-import 'package:desi_mart/Pages/HomePage/widget/category_widget.dart';
-import 'package:desi_mart/Pages/HomePage/widget/drawer_widget.dart';
-import 'package:desi_mart/Pages/HomePage/widget/heading_widget.dart';
-import 'package:desi_mart/Pages/HomePage/widget/sale_widget.dart';
-import 'package:desi_mart/Pages/all_category_page/all_category_page.dart';
-import 'package:desi_mart/Pages/all_products_page/all_products_page.dart';
-import 'package:desi_mart/Pages/all_sale_page/all-sale_page.dart';
+import 'package:desi_mart/User_Panel/Pages/HomePage/widget/all_products_widget.dart';
+import 'package:desi_mart/User_Panel/Pages/HomePage/widget/banner_widget.dart';
+import 'package:desi_mart/User_Panel/Pages/HomePage/widget/category_widget.dart';
+import 'package:desi_mart/User_Panel/Pages/HomePage/widget/drawer_widget.dart';
+import 'package:desi_mart/User_Panel/Pages/HomePage/widget/heading_widget.dart';
+import 'package:desi_mart/User_Panel/Pages/HomePage/widget/sale_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../CartPage/cart_page.dart';
+import '../all_category_page/all_category_page.dart';
+import '../all_products_page/all_products_page.dart';
+import '../all_sale_page/all-sale_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

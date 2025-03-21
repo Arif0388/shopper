@@ -2,10 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:desi_mart/Models/OrderModel.dart';
 import 'package:desi_mart/services/generate_order_id.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 void placeOrder({required BuildContext context,
   required customerName,
@@ -62,16 +60,7 @@ void placeOrder({required BuildContext context,
        await FirebaseFirestore.instance.collection('cart').doc(user.uid).collection('cartOrders').doc(orderModel.productId).delete().then((value){
          print('Delete cart products ${orderModel.productId}');
           });
-       Get.snackbar(
-         'Order Confirm',
-         'order is Confirmed',
-         snackPosition: SnackPosition.TOP,
-         backgroundColor: Colors.green,
-         colorText: Colors.white,
-         duration: Duration(seconds: 2),
-       );
      }
-
 
    }
 
@@ -79,5 +68,12 @@ void placeOrder({required BuildContext context,
    print('Error :$e');
     }
  }
-
+ Get.snackbar(
+   'Order Confirm',
+   'order is Confirmed',
+   snackPosition: SnackPosition.TOP,
+   backgroundColor: Colors.green,
+   colorText: Colors.white,
+   duration: Duration(seconds: 2),
+ );
 }

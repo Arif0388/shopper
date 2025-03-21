@@ -1,12 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:desi_mart/Models/ProductsModel.dart';
-import 'package:desi_mart/Pages/Product_Details_Page/product_details_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:image_card/image_card.dart';
+
+import '../Product_Details_Page/product_details_page.dart';
 
 class SingleCategoryProductsPage extends StatelessWidget {
   const SingleCategoryProductsPage ({super.key, required this.categoryId,});

@@ -3,7 +3,7 @@ import 'package:desi_mart/Controller/forget_password_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../Config/AssetsPath.dart';
+import '../../../Config/AssetsPath.dart';
 class ForgetPasswordPage extends StatelessWidget {
   const ForgetPasswordPage ({super.key});
 

@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:desi_mart/Config/Colors.dart';
-import 'package:desi_mart/Pages/Product_Details_Page/product_details_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +8,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:image_card/image_card.dart';
 
 import '../../../Models/ProductsModel.dart';
+import '../Product_Details_Page/product_details_page.dart';
 
 class AllProductsPage extends StatelessWidget {
   const AllProductsPage({super.key});

@@ -8,7 +8,6 @@ class GetUserDataController extends GetxController
 
   Future<List<QueryDocumentSnapshot<Object?>>> getUserData(String uid)async{
     QuerySnapshot userData = await db.collection('Users').where('Uid',isEqualTo:uid).get();
-    print('Value:${userData.docs}');
     return userData.docs;
   }
 

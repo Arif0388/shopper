@@ -1,15 +1,13 @@
 
 import 'dart:async';
-
 import 'package:desi_mart/Config/AssetsPath.dart';
-import 'package:desi_mart/Config/Colors.dart';
 import 'package:desi_mart/Controller/get_user_data_controller.dart';
-import 'package:desi_mart/Pages/AdminPage/adminPage.dart';
-import 'package:desi_mart/Pages/HomePage/HomePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../AdminPage/adminPage.dart';
+import '../HomePage/HomePage.dart';
 import '../WelcomePage/WelcomePage.dart';
 
 class SplashScreen extends StatefulWidget {

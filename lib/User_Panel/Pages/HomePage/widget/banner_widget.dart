@@ -3,8 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../Controller/banner_controller.dart';
+import '../../../../Controller/banner_controller.dart';
 
 class BannerWidget extends StatelessWidget {
   const BannerWidget({super.key});

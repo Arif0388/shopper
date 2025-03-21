@@ -1,17 +1,19 @@
-import 'package:desi_mart/Controller/sign_up_controller.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:desi_mart/Controller/google_sign_in_controller.dart';
-import 'package:desi_mart/Pages/AuthPage/Signup.dart';
-import 'package:desi_mart/Pages/WelcomePage/WelcomePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
+import '../../WelcomePage/WelcomePage.dart';
+import '../../all_orders_page/all_orders_page.dart';
 
 class drawer extends StatelessWidget {
   const drawer({super.key});
 
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
     GoogleSignInController googleSignInController = Get.put(GoogleSignInController());
     return SingleChildScrollView(
       scrollDirection:Axis.vertical,
@@ -24,14 +26,14 @@ class drawer extends StatelessWidget {
                      radius:40,
                      child:ClipRRect(
                          borderRadius:BorderRadius.circular(50),
-                         child: Image.network(fit:BoxFit.cover,'https://cdn-icons-png.flaticon.com/128/3135/3135715.png')
+                         child: CachedNetworkImage(fit:BoxFit.cover, imageUrl:user!.photoURL!)
                      ),
                    ),
                 const SizedBox(width:25),
                 Column(
                   children: [
                     const SizedBox(height:30),
-                      Text('Arif Hussain',style:Theme.of(context).textTheme.headlineSmall),
+                      Text(user.displayName!,style:Theme.of(context).textTheme.headlineSmall),
                     const SizedBox(height:10),
                        OutlinedButton(
                            onPressed:(){
@@ -71,6 +73,9 @@ class drawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal:10,vertical:10),
             child: ListTile(
+              onTap:(){
+                Get.to(AllOrdersPagePage());
+              },
               titleAlignment:ListTileTitleAlignment.center,
               title:Text('Orders',style:Theme.of(context).textTheme.headlineSmall),
               leading:Icon(Icons.shopping_bag_rounded,color:Colors.tealAccent,),

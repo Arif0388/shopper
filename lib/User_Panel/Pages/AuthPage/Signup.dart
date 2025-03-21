@@ -1,15 +1,13 @@
 
-import 'package:desi_mart/Config/AssetsPath.dart';
 import 'package:desi_mart/Controller/sign_up_controller.dart';
-import 'package:desi_mart/Pages/AuthPage/Login.dart';
-import 'package:desi_mart/Pages/HomePage/HomePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../../Controller/get_device_token_controller.dart';
+import '../../../Controller/get_device_token_controller.dart';
+import 'Login.dart';
 class SignUp extends StatelessWidget {
     const SignUp({super.key});
 

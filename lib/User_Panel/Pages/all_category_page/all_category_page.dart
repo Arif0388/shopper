@@ -1,14 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:desi_mart/Config/Colors.dart';
-import 'package:desi_mart/Controller/banner_controller.dart';
-import 'package:desi_mart/Pages/single_category_products_page/single_category_products_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_card/image_card.dart';
 
-import '../../Models/CategoryModel.dart';
+import '../../../Models/CategoryModel.dart';
+import '../single_category_products_page/single_category_products_page.dart';
 
 class AllCategoryPage extends StatelessWidget {
   const AllCategoryPage({super.key,});
